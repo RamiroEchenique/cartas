@@ -36,9 +36,13 @@ public class Baraja {
     }
     
     public void mostrarBaraja(){
-        for (Carta carta : cartas) {
-            System.out.println(carta);
+        if(cartas.isEmpty()){
+            System.out.println("No quedan cartas por repartir");
+        }else{
+            for (Carta carta : cartas) {
+                System.out.println(carta);
             
+            }
         }
     }
 
@@ -54,17 +58,43 @@ public class Baraja {
            return null;
        }
         aux=cartas.get(0);
+        monton.add(aux);
         cartas.remove(0);
         return aux;
     }
     
-    public void darCartas(int num){
-//        ArrayList<Carta>cartasJugador=new ArrayList();
-//        for (int i = 0; i < num; i++) {
-//           cartasJugador.add(cartas(i)); 
-//        }
-//        
-        
+    public int cartasDisponibles(){
+    
+    return cartas.size();}
+    
+    
+    public ArrayList<Carta> darCartas(int num){
+            ArrayList<Carta> cartasPedidas=new ArrayList();
+            
+            if (num>cartas.size()){
+                System.out.println("hay menos cartas que las pedidas");
+            }else{
+                for (int i = 0; i < num; i++) {
+                    cartasPedidas.add(siguienteCarta());
+                }
+            }
 
-    } 
+    return cartasPedidas;} 
+    
+    public void cartasMonton(){
+        
+        if(monton.isEmpty()){ // Pregunta si monton esta vacio, significa que no el han dado cartas
+            System.out.println("No ha salido ninguna carta");
+        }else{
+            //System.out.println("Cartas del monton:");
+            for (Carta variable : monton) {
+                System.out.println(variable);
+            
+            }
+        }
+    
+    }
+    
+
+    
 }
